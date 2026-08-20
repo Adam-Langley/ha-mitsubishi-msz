@@ -25,8 +25,11 @@ MIN_TEMP = 16.0
 MAX_TEMP = 31.0
 TEMP_STEP = 0.5
 
+# The unit's mode 0x00 is the remote's AUTO, where the unit itself decides
+# whether to heat or cool from a single setpoint.  That is HVACMode.AUTO
+# rather than HEAT_COOL, which implies a two-ended target range.
 HVAC_MODE_TO_DRIVE: dict[HVACMode, DriveMode] = {
-    HVACMode.HEAT_COOL: DriveMode.AUTO,
+    HVACMode.AUTO: DriveMode.AUTO,
     HVACMode.HEAT: DriveMode.HEAT,
     HVACMode.DRY: DriveMode.DRY,
     HVACMode.COOL: DriveMode.COOL,
