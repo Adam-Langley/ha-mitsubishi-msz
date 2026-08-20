@@ -64,23 +64,48 @@
               "swing": "Swing"
             }
           }
+        },
+        "state": {
+          "heat_cool": "Auto"
         }
       }
     },
     "sensor": {
-      "room_temperature": { "name": "Room temperature" },
-      "room_temperature_secondary": { "name": "Room temperature (secondary sensor)" },
-      "outdoor_temperature": { "name": "Outdoor temperature" },
-      "power": { "name": "Power" },
-      "energy": { "name": "Energy" },
-      "runtime": { "name": "Runtime" },
-      "wifi_signal": { "name": "Wi-Fi signal" },
-      "error_code": { "name": "Error code" }
+      "room_temperature": {
+        "name": "Room temperature"
+      },
+      "room_temperature_secondary": {
+        "name": "Room temperature (secondary sensor)"
+      },
+      "outdoor_temperature": {
+        "name": "Outdoor temperature"
+      },
+      "power": {
+        "name": "Power"
+      },
+      "energy": {
+        "name": "Energy"
+      },
+      "runtime": {
+        "name": "Runtime"
+      },
+      "wifi_signal": {
+        "name": "Wi-Fi signal"
+      },
+      "error_code": {
+        "name": "Error code"
+      }
     },
     "binary_sensor": {
-      "operating": { "name": "Compressor" },
-      "problem": { "name": "Problem" },
-      "i_see_sensor": { "name": "i-see sensor" }
+      "operating": {
+        "name": "Compressor"
+      },
+      "problem": {
+        "name": "Problem"
+      },
+      "i_see_sensor": {
+        "name": "i-see sensor"
+      }
     },
     "select": {
       "horizontal_vane": {
@@ -101,7 +126,9 @@
       }
     },
     "switch": {
-      "power_saving": { "name": "Power saving" }
+      "power_saving": {
+        "name": "Power saving"
+      }
     }
   }
 }

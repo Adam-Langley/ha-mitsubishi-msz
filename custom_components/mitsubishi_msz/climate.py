@@ -55,7 +55,7 @@ class MszClimate(MszEntity, ClimateEntity):
     _attr_max_temp = MAX_TEMP
     _attr_hvac_modes = [
         HVACMode.OFF,
-        HVACMode.AUTO,
+        HVACMode.HEAT_COOL,
         HVACMode.HEAT,
         HVACMode.COOL,
         HVACMode.DRY,
@@ -88,8 +88,8 @@ class MszClimate(MszEntity, ClimateEntity):
         if not general.power:
             return HVACMode.OFF
         if isinstance(general.drive_mode, DriveMode):
-            return DRIVE_TO_HVAC_MODE.get(general.drive_mode, HVACMode.AUTO)
-        return HVACMode.AUTO
+            return DRIVE_TO_HVAC_MODE.get(general.drive_mode, HVACMode.HEAT_COOL)
+        return HVACMode.HEAT_COOL
 
     @property
     def hvac_action(self) -> HVACAction | None:

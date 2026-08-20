@@ -25,11 +25,16 @@ MIN_TEMP = 16.0
 MAX_TEMP = 31.0
 TEMP_STEP = 0.5
 
-# The unit's mode 0x00 is the remote's AUTO, where the unit itself decides
-# whether to heat or cool from a single setpoint.  That is HVACMode.AUTO
-# rather than HEAT_COOL, which implies a two-ended target range.
+# Mode 0x00 is the remote's AUTO, where the unit decides for itself whether to
+# heat or cool from a single setpoint.
+#
+# It is reported as HEAT_COOL rather than AUTO purely for the icon: the
+# frontend's mode icons are a hardcoded map keyed by mode name, and HEAT_COOL
+# is the sun-and-snowflake one.  The label that would normally read
+# "Heat/Cool" is overridden to "Auto" through this entity's state
+# translations, which the frontend resolves ahead of the climate defaults.
 HVAC_MODE_TO_DRIVE: dict[HVACMode, DriveMode] = {
-    HVACMode.AUTO: DriveMode.AUTO,
+    HVACMode.HEAT_COOL: DriveMode.AUTO,
     HVACMode.HEAT: DriveMode.HEAT,
     HVACMode.DRY: DriveMode.DRY,
     HVACMode.COOL: DriveMode.COOL,
