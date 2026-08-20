@@ -42,7 +42,7 @@ A single device with these entities:
 | Power saving | `switch` | Economy mode |
 | Room temperature | `sensor` | The unit's own sensor, 0.5 °C resolution |
 | Room temperature (secondary) | `sensor` | Second internal sensor, disabled by default |
-| Outdoor temperature | `sensor` | Only created if your unit actually reports one |
+| Outdoor temperature | `sensor` | Reads only while the unit is running; unknown when the compressor is stopped |
 | Power / Energy | `sensor` | Only meaningful on models with a power meter; the GL series reports zero |
 | Compressor | `binary_sensor` | Whether the unit is actively running |
 | Problem | `binary_sensor` | Fault flag, with the raw error code as a diagnostic sensor |

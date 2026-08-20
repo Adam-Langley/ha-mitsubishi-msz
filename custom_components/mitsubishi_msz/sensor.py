@@ -55,6 +55,11 @@ SENSORS: tuple[MszSensorDescription, ...] = (
         entity_registry_enabled_default=False,
         value_fn=lambda state: state.sensor.room_temp_secondary,
     ),
+    # The outdoor sensor only reads while the unit is running; with the
+    # compressor stopped it returns a value outside the plausible range and
+    # the entity reports unknown.  It is created unconditionally all the same,
+    # because an entity that came and went depending on the state at startup
+    # would break history, dashboards and automations referencing it.
     MszSensorDescription(
         key="outdoor_temperature",
         translation_key="outdoor_temperature",
@@ -115,16 +120,7 @@ async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback
 ) -> None:
     coordinator: MszCoordinator = entry.runtime_data
-    state = coordinator.data
-
-    entities = []
-    for description in SENSORS:
-        # This model has no outdoor sensor wired to CN105; skip the entity
-        # rather than leave one permanently unknown.
-        if description.key == "outdoor_temperature" and state.sensor.outdoor_temp is None:
-            continue
-        entities.append(MszSensor(coordinator, description))
-    async_add_entities(entities)
+    async_add_entities(MszSensor(coordinator, description) for description in SENSORS)
 
 
 class MszSensor(MszEntity, SensorEntity):
