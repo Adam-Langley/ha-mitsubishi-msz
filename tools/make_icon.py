@@ -1,19 +1,21 @@
 """Draw the Mitsubishi three-diamond mark.
 
 Three slender rhombi (60 degrees at the inner and outer vertices, 120 at the
-laterals) radiate from the centre at 120 degree intervals.  Because each
-diamond only occupies 60 degrees, the three 60 degree gaps between them form
-the three-pointed star of negative space the mark is known for.
+laterals) radiate from the centre at 120 degree intervals, their inner tips
+meeting at the exact centre.  Because each diamond only occupies 60 degrees,
+the three 60 degree gaps between them form the three-pointed star of negative
+space the mark is known for.
 
 Geometry is laid out in unit space, then scaled to fit the canvas from its
 own bounding box so the artwork is centred whatever the size.
 """
 import math
+import pathlib
 from PIL import Image, ImageDraw
 
 RED = (230, 0, 18, 255)      # Mitsubishi red, #E60012
 SS = 8                        # supersampling factor
-INNER = 0.10                  # gap between the inner tips and the exact centre
+INNER = 0.0                   # inner tips meet at the exact centre
 PAD = 0.94                    # fraction of the canvas the mark fills
 
 
@@ -53,7 +55,10 @@ def render(size, fill=RED):
     return img.resize((size, size), Image.LANCZOS)
 
 
+OUT = pathlib.Path(__file__).resolve().parents[1] / "custom_components" / "mitsubishi_msz" / "brand"
+
 for name, size in (("icon.png", 256), ("icon@2x.png", 512),
                    ("logo.png", 256), ("logo@2x.png", 512)):
-    render(size).save(name)
-    print(f"wrote {name} ({size}x{size})")
+    OUT.mkdir(parents=True, exist_ok=True)
+    render(size).save(OUT / name)
+    print(f"wrote {OUT.name}/{name} ({size}x{size})")
