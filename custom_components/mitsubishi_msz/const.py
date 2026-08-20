@@ -14,10 +14,12 @@ CONF_SCAN_INTERVAL_SECONDS = "scan_interval_seconds"
 DEFAULT_SCAN_INTERVAL = 30
 MIN_SCAN_INTERVAL = 10
 
-# The adapter refreshes its cached snapshot of the indoor unit roughly every
-# five seconds, so a write is not visible immediately.  Re-read after this
-# delay to pick up what the unit actually accepted.
-WRITE_SETTLE_SECONDS = 7
+# The adapter serves a snapshot of the indoor unit that it refreshes on its
+# own schedule.  Measured propagation of a command was around 12 seconds, so
+# poll a few times afterwards rather than once, and keep showing the commanded
+# value until the unit echoes it back or the window expires.
+REFRESH_DELAYS = (5, 10, 16, 24)
+CONFIRM_WINDOW_SECONDS = 30
 
 MIN_TEMP = 16.0
 MAX_TEMP = 31.0
