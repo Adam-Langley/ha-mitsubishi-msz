@@ -1,0 +1,107 @@
+{
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "Mitsubishi MSZ Local",
+        "description": "Enter the IP address of the MAC-559IF-E Wi-Fi adapter. Give it a static lease on your router so it does not move.",
+        "data": {
+          "host": "IP address",
+          "name": "Name"
+        }
+      },
+      "confirm": {
+        "title": "Mitsubishi MSZ Local",
+        "description": "Found a {model} adapter at {host}. Add it?",
+        "data": {
+          "name": "Name"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "No Mitsubishi adapter answered at that address. Check the IP and that the adapter's status light shows it is connected."
+    },
+    "abort": {
+      "already_configured": "This adapter is already set up.",
+      "not_mitsubishi": "That device is not a Mitsubishi Wi-Fi adapter."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options",
+        "data": {
+          "scan_interval_seconds": "Poll interval (seconds)"
+        },
+        "data_description": {
+          "scan_interval_seconds": "The adapter refreshes its own snapshot about every 5 seconds. Polling faster than that gains nothing."
+        }
+      }
+    }
+  },
+  "entity": {
+    "climate": {
+      "heat_pump": {
+        "state_attributes": {
+          "fan_mode": {
+            "state": {
+              "auto": "Auto",
+              "quiet": "Quiet",
+              "low": "Low",
+              "medium": "Medium",
+              "high": "High",
+              "max": "Maximum"
+            }
+          },
+          "swing_mode": {
+            "state": {
+              "auto": "Auto",
+              "position_1": "Position 1 (highest)",
+              "position_2": "Position 2",
+              "position_3": "Position 3",
+              "position_4": "Position 4",
+              "position_5": "Position 5 (lowest)",
+              "swing": "Swing"
+            }
+          }
+        }
+      }
+    },
+    "sensor": {
+      "room_temperature": { "name": "Room temperature" },
+      "room_temperature_secondary": { "name": "Room temperature (secondary sensor)" },
+      "outdoor_temperature": { "name": "Outdoor temperature" },
+      "power": { "name": "Power" },
+      "energy": { "name": "Energy" },
+      "runtime": { "name": "Runtime" },
+      "wifi_signal": { "name": "Wi-Fi signal" },
+      "error_code": { "name": "Error code" }
+    },
+    "binary_sensor": {
+      "operating": { "name": "Compressor" },
+      "problem": { "name": "Problem" },
+      "i_see_sensor": { "name": "i-see sensor" }
+    },
+    "select": {
+      "horizontal_vane": {
+        "name": "Horizontal vane",
+        "state": {
+          "auto": "Auto",
+          "far_left": "Far left",
+          "left": "Left",
+          "center": "Centre",
+          "right": "Right",
+          "far_right": "Far right",
+          "left_center": "Left and centre",
+          "center_right": "Centre and right",
+          "left_right": "Left and right",
+          "left_center_right": "Left, centre and right",
+          "swing": "Swing"
+        }
+      }
+    },
+    "switch": {
+      "power_saving": { "name": "Power saving" }
+    }
+  }
+}

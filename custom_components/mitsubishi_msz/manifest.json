@@ -1,0 +1,13 @@
+{
+  "domain": "mitsubishi_msz",
+  "name": "Mitsubishi MSZ Local",
+  "codeowners": ["@Adam-Langley"],
+  "config_flow": true,
+  "dhcp": [{ "hostname": "gainspan*" }],
+  "documentation": "https://github.com/Adam-Langley/ha-mitsubishi-msz",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/Adam-Langley/ha-mitsubishi-msz/issues",
+  "requirements": [],
+  "version": "1.0.0"
+}
