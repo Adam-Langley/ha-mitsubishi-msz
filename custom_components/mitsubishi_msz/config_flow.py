@@ -7,7 +7,6 @@ from typing import Any
 
 import voluptuous as vol
 
-from homeassistant.components import dhcp
 from homeassistant.config_entries import (
     ConfigEntry,
     ConfigFlow,
@@ -18,6 +17,7 @@ from homeassistant.const import CONF_HOST, CONF_NAME
 from homeassistant.core import callback
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.device_registry import format_mac
+from homeassistant.helpers.service_info.dhcp import DhcpServiceInfo
 
 from .api import ApiError, MitsubishiLocalApi
 from .const import (
@@ -82,7 +82,7 @@ class MszConfigFlow(ConfigFlow, domain=DOMAIN):
         )
 
     async def async_step_dhcp(
-        self, discovery_info: dhcp.DhcpServiceInfo
+        self, discovery_info: DhcpServiceInfo
     ) -> ConfigFlowResult:
         """Pick up an adapter that just appeared on the network.
 

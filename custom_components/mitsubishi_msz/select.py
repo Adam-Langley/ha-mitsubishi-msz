@@ -5,7 +5,7 @@ from __future__ import annotations
 from homeassistant.components.select import SelectEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
 from .const import HORIZONTAL_VANE_OPTIONS, VANE_TO_HORIZONTAL_OPTION
 from .coordinator import MszCoordinator
@@ -14,7 +14,7 @@ from .protocol import Controls, GeneralState
 
 
 async def async_setup_entry(
-    hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddEntitiesCallback
+    hass: HomeAssistant, entry: ConfigEntry, async_add_entities: AddConfigEntryEntitiesCallback
 ) -> None:
     async_add_entities([MszHorizontalVane(entry.runtime_data)])
 
